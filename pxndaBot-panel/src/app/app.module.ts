@@ -10,18 +10,22 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { de_DE } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { YoutubeWindowComponent } from './youtube-window/youtube-window.component';
 
 registerLocaleData(de);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    YoutubeWindowComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NzLayoutModule,
     BrowserAnimationsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: de_DE }],
