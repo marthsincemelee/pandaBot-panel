@@ -2,9 +2,9 @@
 <div class="container">
     <h2>Welcome to the Pxnda Music Bot Panel</h2>
     <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-        <input [ngModel]="currentInput"  type="text" nz-input placeholder="Search on Youtube..." />
+        <input [(ngModel)]="currentInput"  type="text" nz-input placeholder="Search on Youtube..." />
       </nz-input-group>
       <ng-template #suffixIconButton>
-        <button nz-button nzType="primary" nzSearch (click)="onSubmit()"><i nz-icon nzType="search" ></i></button>
+        <button nz-button nzType="primary" nzSearch (click)="onSubmit()"><i nz-icon nzType="search" type="submit" ></i></button>
       </ng-template>
 </div>

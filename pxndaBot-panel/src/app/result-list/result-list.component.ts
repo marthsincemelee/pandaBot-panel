@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RequestServiceService} from "../../services/request-service.service";
+import {RequestServiceService} from "../services/request-service.service";
 
 @Component({
   selector: 'app-result-list',

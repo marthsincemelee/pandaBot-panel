@@ -4,6 +4,7 @@
     <div nz-col [nzSpan]="8" *ngFor="let video of requestService.searchResults">
       <nz-card [nzCover]="coverTemplate">
         <nz-card-meta [nzTitle]="video.title" [nzDescription]="video.description" ></nz-card-meta>
+        <button nz-button (click)="requestService.startSong(video.videoId)">Start Song</button>
       </nz-card>
 
       <ng-template #coverTemplate>
