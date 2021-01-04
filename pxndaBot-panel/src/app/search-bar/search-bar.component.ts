@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RequestServiceService} from "../../services/request-service.service";
 
 @Component({
   selector: 'app-search-bar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public requestService: RequestServiceService) { }
+
+  currentInput: string;
 
   ngOnInit(): void {
+  }
+
+  onSubmit(): void {
+    console.log('clicked');
+    this.requestService.requestSearch('shark');
   }
 
 }

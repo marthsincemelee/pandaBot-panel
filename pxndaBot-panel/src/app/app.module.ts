@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import { NzListModule } from 'ng-zorro-antd/list';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +20,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import {NzGridModule} from "ng-zorro-antd";
 
 
 registerLocaleData(de);
@@ -36,12 +38,14 @@ registerLocaleData(de);
     FormsModule,
     NzCardModule,
     NzButtonModule,
+    NzListModule,
     NzIconModule,
     HttpClientModule,
     NzLayoutModule,
     NzInputModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    NzGridModule
   ],
   providers: [{ provide: NZ_I18N, useValue: de_DE }],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {RequestServiceService} from "../../services/request-service.service";
 
 @Component({
   selector: 'app-result-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultListComponent implements OnInit {
 
-  constructor() { }
+  constructor(public requestService: RequestServiceService) { }
 
   ngOnInit(): void {
   }
