@@ -1,6 +1,6 @@
 <div class="space-top container" *ngIf="requestService.dataLoaded">
   <h3>Search results:</h3>
-  <div nz-row [nzGutter]="8">
+  <div nz-row [nzGutter]="[8, 24]">
     <div nz-col [nzSpan]="8" *ngFor="let video of requestService.searchResults">
       <nz-card [nzCover]="coverTemplate">
         <nz-card-meta [nzTitle]="video.title" [nzDescription]="video.description" ></nz-card-meta>

@@ -26,9 +26,9 @@ export class RequestServiceService {
       if (response.status === 200) {
         response.body.items.forEach(video => {
           console.log(video);
-          this.searchResults.push(new YoutubeSearchResult(video.id.kind, video.id.videoId, video.snippet.title, video.snippet.thumbnails, video.snippet.description));
-
-
+          if(video.id.kind === "youtube#video") {
+            this.searchResults.push(new YoutubeSearchResult(video.id.kind, video.id.videoId, video.snippet.title, video.snippet.thumbnails, video.snippet.description));
+          }
         })
         console.log(this.searchResults);
         this.dataLoaded = true;
