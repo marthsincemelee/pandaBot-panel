@@ -1,0 +1,10 @@
+<div>
+  <span class="mx-auto" *ngIf="!this.requestService.dataLoaded">Loading List....</span>
+  <span *ngIf="this.requestService.currentQueue.length === 0 ">No QUQUQUQUQUQUEUEUEU yet....</span><br>
+  <nz-list nzBordered nzHeader="Currently playing: " *ngIf="this.requestService.currentQueue.length !== 0">
+    <nz-list-item *ngFor="let item of this.requestService.currentQueue">
+      {{ item }}
+    </nz-list-item>
+  </nz-list>
+  <button nz-button (click)="requestService.getQueueForGuild(this.requestService.guildID)">Refresh Queue</button>
+</div>

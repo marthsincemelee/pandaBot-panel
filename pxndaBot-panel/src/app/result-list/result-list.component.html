@@ -6,11 +6,9 @@
         <nz-card-meta [nzTitle]="video.title" [nzDescription]="video.description" ></nz-card-meta>
         <button nz-button (click)="requestService.startSong(video.videoId)">Start Song</button>
       </nz-card>
-
       <ng-template #coverTemplate>
         <img alt="example" [src]="video.thumbnails.medium.url" />
       </ng-template>
-
     </div>
   </div>
 </div>

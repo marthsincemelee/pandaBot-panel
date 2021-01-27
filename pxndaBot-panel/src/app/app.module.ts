@@ -21,6 +21,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import {NzGridModule} from "ng-zorro-antd";
+import { SongQueueComponent } from './song-queue/song-queue.component';
 
 
 registerLocaleData(de);
@@ -30,7 +31,8 @@ registerLocaleData(de);
     AppComponent,
     YoutubeWindowComponent,
     ResultListComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    SongQueueComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ registerLocaleData(de);
     NzListModule,
     NzIconModule,
     HttpClientModule,
+    NzListModule,
     NzLayoutModule,
     NzInputModule,
     BrowserAnimationsModule,

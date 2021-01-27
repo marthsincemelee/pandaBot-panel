@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {YoutubeSearchResult} from "../models/YoutubeSearchResult";
+import {newArray} from "@angular/compiler/src/util";
+import {SongQueueResonseObject} from "../models/SongQueueResonseObject";
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +15,38 @@ export class RequestServiceService {
   guildID = '419133817966559232';
   userID = '227377144324554753';
   channelID = '693194667474288671';
-  requestURL = 'https://api.cloudypanda.de/addSong'
+  requestURL = 'https://api.cloudypanda.de/'
+  currentQueue: Array<string>;
 
   constructor(private http: HttpClient) {
     this.searchResults = new Array<YoutubeSearchResult>();
+    this.currentQueue = new Array<string>();
     this.dataLoaded = false;
+    this.getQueueForGuild(this.guildID);
 
   }
 
-  startSong(youtubeId: string) {
+
+  /**
+   * method for requesting the currentQueue for a specific guild
+   * @param guildId
+   */
+  async getQueueForGuild(guildId: string) {
+    this.dataLoaded = false;
+    this.currentQueue = [];
+    try {
+      const response = await this.http.get<Array<SongQueueResonseObject>>(this.requestURL + 'getSongQueue/' + guildId).toPromise();
+      response.forEach(song => {
+        this.currentQueue.push(song.name);
+      })
+      console.log(this.currentQueue);
+      this.dataLoaded = true;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async startSong(youtubeId: string) {
     const data = {
       UserID: this.userID,
       ServerID: this.guildID,
@@ -29,8 +54,10 @@ export class RequestServiceService {
       SongURL: 'https://youtube.com/watch?v=' + youtubeId
     };
     console.log('requesting now');
-    const response = this.http.post(this.requestURL, data).toPromise();
+    const response = await this.http.post(this.requestURL + 'addSong', data).toPromise();
     console.log('requested stopped');
+
+    this.getQueueForGuild(this.guildID);
   }
 
   async requestSearch(searchPhrase: string): Promise<any> {
@@ -43,14 +70,14 @@ export class RequestServiceService {
 
       if (response.status === 200) {
         response.body.items.forEach(video => {
-          if(video.id.kind === "youtube#video") {
+          if (video.id.kind === "youtube#video") {
             this.searchResults.push(new YoutubeSearchResult(video.id.kind, video.id.videoId, video.snippet.title, video.snippet.thumbnails, video.snippet.description));
           }
         })
         console.log(this.searchResults);
         this.dataLoaded = true;
       }
-    }catch (e) {
+    } catch (e) {
       console.log(e);
     }
   }
