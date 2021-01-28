@@ -22,6 +22,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import {NzGridModule} from "ng-zorro-antd";
 import { SongQueueComponent } from './song-queue/song-queue.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 
 registerLocaleData(de);
@@ -39,6 +40,7 @@ registerLocaleData(de);
     AppRoutingModule,
     FormsModule,
     NzCardModule,
+    NzModalModule,
     NzButtonModule,
     NzListModule,
     NzIconModule,
