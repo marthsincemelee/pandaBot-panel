@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
@@ -23,6 +23,8 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import {NzGridModule} from "ng-zorro-antd";
 import { SongQueueComponent } from './song-queue/song-queue.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { SetUpModalComponent } from './set-up-modal/set-up-modal.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 
 registerLocaleData(de);
@@ -33,7 +35,8 @@ registerLocaleData(de);
     YoutubeWindowComponent,
     ResultListComponent,
     SearchBarComponent,
-    SongQueueComponent
+    SongQueueComponent,
+    SetUpModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ registerLocaleData(de);
     NzModalModule,
     NzButtonModule,
     NzListModule,
+    NzFormModule,
     NzIconModule,
     HttpClientModule,
     NzListModule,
@@ -50,7 +54,8 @@ registerLocaleData(de);
     NzInputModule,
     BrowserAnimationsModule,
     NgbModule,
-    NzGridModule
+    NzGridModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: de_DE }],
   bootstrap: [AppComponent]
