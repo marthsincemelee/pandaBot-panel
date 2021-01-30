@@ -1,0 +1,27 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Setting up the bot" nzClosable="false" nzOkText="Finish setup" [nzCancelText]="null" (nzOnOk)="onSubmit(setupForm.value)">
+  <ng-container >
+    <h3>Hello there!</h3>
+    <h4>Since this is the first time you are using this page you will have to set up a few options in order for it to work.</h4>
+    <hr>
+    <form nz-form [formGroup]="setupForm" (ngSubmit)="onSubmit(setupForm.value)">
+      <p>The bot need to know the user ID of the user it should request the song for.</p>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input name="userId" formControlName="userId" type="text" id="userId" placeholder="User ID">
+        </nz-form-control>
+      </nz-form-item>
+      <p>The guild ID is use to let the bot know in which guild the song should start playing.</p>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input name="guildId" type="text" formControlName="guildId" id="guildId" placeholder="Guild ID">
+        </nz-form-control>
+      </nz-form-item>
+      <p>Last but not least the bot needs to know a channel of the server where it can answer your commands.</p>
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24">
+          <input nz-input name="channelId" type="text" formControlName="channelId" id="channelId" placeholder="Channel ID">
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+</nz-modal>

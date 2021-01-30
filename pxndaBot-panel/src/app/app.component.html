@@ -1,0 +1,20 @@
+<nz-layout>
+  <nz-header></nz-header>
+  <nz-content>
+    <app-search-bar></app-search-bar>
+    <div class="container-fluid">
+      <div nz-row style="margin-top: 5vh">
+        <div nz-col [nzSpan]="18" [nzPush]="6">
+          <app-result-list class="mx-auto"></app-result-list>
+        </div>
+        <div nz-col [nzSpan]="6" [nzPull]="18">
+          <app-song-queue></app-song-queue>
+        </div>
+      </div>
+    </div>
+  </nz-content>
+  <app-set-up-modal></app-set-up-modal>
+  <nz-footer>
+  <app-cookie-settings></app-cookie-settings>
+  </nz-footer>
+</nz-layout>
