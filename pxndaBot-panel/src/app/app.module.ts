@@ -25,6 +25,7 @@ import { SongQueueComponent } from './song-queue/song-queue.component';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { SetUpModalComponent } from './set-up-modal/set-up-modal.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { CookieSettingsComponent } from './cookie-settings/cookie-settings.component';
 
 
 registerLocaleData(de);
@@ -37,6 +38,7 @@ registerLocaleData(de);
     SearchBarComponent,
     SongQueueComponent,
     SetUpModalComponent,
+    CookieSettingsComponent,
   ],
   imports: [
     BrowserModule,

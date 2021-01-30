@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {YoutubeSearchResult} from "../models/YoutubeSearchResult";
 import {newArray} from "@angular/compiler/src/util";
 import {SongQueueResonseObject} from "../models/SongQueueResonseObject";
+import {CookieService} from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +12,31 @@ export class RequestServiceService {
 
   searchResults: Array<any>;
   dataLoaded: boolean;
+  isSetupDone: boolean;
 
-  guildID = '419133817966559232';
-  userID = '227377144324554753';
-  channelID = '693194667474288671';
+  guildID = '';
+  userID = '';
+  channelID = '';
   requestURL = 'https://api.cloudypanda.de/'
   currentQueue: Array<string>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+
+    if(this.cookieService.get('botSetupDone') === 'true') {
+      this.isSetupDone = true;
+      this.getCookieData();
+    }else {
+      this.isSetupDone = false;
+    }
+
     this.searchResults = new Array<YoutubeSearchResult>();
     this.currentQueue = new Array<string>();
     this.dataLoaded = false;
     this.getQueueForGuild(this.guildID);
 
   }
+
+
 
 
   /**
@@ -58,6 +70,17 @@ export class RequestServiceService {
     console.log('requested stopped');
 
     this.getQueueForGuild(this.guildID);
+  }
+
+  getCookieData(): void {
+    this.guildID = this.cookieService.get('guildId');
+    this.userID = this.cookieService.get('userId');
+    this.channelID = this.cookieService.get('channelId');
+  }
+
+  deleteAllCookieData(): void {
+    this.cookieService.deleteAll();
+    location.reload();
   }
 
   async requestSearch(searchPhrase: string): Promise<any> {

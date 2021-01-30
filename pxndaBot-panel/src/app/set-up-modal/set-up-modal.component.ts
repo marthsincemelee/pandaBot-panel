@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {CookieService} from "ngx-cookie-service";
+import set = Reflect.set;
+import {RequestServiceService} from "../services/request-service.service";
 
 @Component({
   selector: 'app-set-up-modal',
@@ -8,12 +11,13 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class SetUpModalComponent implements OnInit {
 
+
   isVisible: boolean;
   setupForm: FormGroup;
 
 
-  constructor(private fb: FormBuilder) {
-    this.isVisible = true;
+  constructor(private fb: FormBuilder, private cookieService: CookieService, public requestService: RequestServiceService) {
+    this.isVisible = !this.requestService.isSetupDone;
     this.setupForm = this.fb.group({
       userId: ['', Validators.required],
       guildId: ['', Validators.required],
@@ -23,7 +27,17 @@ export class SetUpModalComponent implements OnInit {
   }
 
   onSubmit(setupFormData): void {
-    this.setupForm.reset();
+
+    if(this.setupForm.valid){
+      this.cookieService.set('botSetupDone', 'true');
+      this.cookieService.set('userId',setupFormData.userId);
+      this.cookieService.set('guildId',setupFormData.guildId);
+      this.cookieService.set('channelId', setupFormData.channelId);
+
+      this.setupForm.reset();
+      this.requestService.getCookieData();
+      this.isVisible = false;
+    }
   }
 
   ngOnInit(): void {
