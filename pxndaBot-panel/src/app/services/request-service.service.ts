@@ -88,7 +88,7 @@ export class RequestServiceService {
     this.dataLoaded = false;
     this.searchResults = [];
     try {
-      const response = await this.http.get<any>('http://localhost:3000/' + searchPhrase,
+      const response = await this.http.get<any>('https://pxnda.smoothcloud.de/' + searchPhrase,
         {observe: "response"}).toPromise();
 
       if (response.status === 200) {

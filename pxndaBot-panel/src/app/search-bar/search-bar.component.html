@@ -1,10 +1,15 @@
-
 <div class="container">
     <h2>Welcome to the Pxnda Music Bot Panel</h2>
-    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-        <input [(ngModel)]="currentInput"  type="text" nz-input placeholder="Search on Youtube..." />
-      </nz-input-group>
-      <ng-template #suffixIconButton>
-        <button nz-button nzType="primary" nzSearch (click)="onSubmit()"><i nz-icon nzType="search" type="submit" ></i></button>
-      </ng-template>
+  <form nz-form (ngSubmit)="onSubmit()">
+    <nz-form-item>
+      <nz-form-control [nzSpan]="24">
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+          <input type="text" formControlName="search" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+          <button nz-button nzType="primary" nzSearch><i nz-icon type="submit" nzType="search"></i></button>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
 </div>

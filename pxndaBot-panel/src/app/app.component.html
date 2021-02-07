@@ -1,20 +1,27 @@
 <nz-layout>
   <nz-header></nz-header>
-  <nz-content>
-    <app-search-bar></app-search-bar>
-    <div class="container-fluid">
-      <div nz-row style="margin-top: 5vh">
-        <div nz-col [nzSpan]="18" [nzPush]="6">
-          <app-result-list class="mx-auto"></app-result-list>
-        </div>
-        <div nz-col [nzSpan]="6" [nzPull]="18">
-          <app-song-queue></app-song-queue>
+  <nz-layout>
+    <nz-drawer [nzClosable]="false" [nzVisible]="false" nzPlacement="right" nzTitle="Basic Drawer" (nzOnClose)="close()">
+      <ng-container>
+        <app-song-queue></app-song-queue>
+      </ng-container>
+    </nz-drawer>
+    <nz-content>
+      <div class="container-fluid">
+        <app-search-bar></app-search-bar>
+        <div nz-row style="margin-top: 5vh">
+          <div nz-col [nzSpan]="18" [nzPush]="6">
+            <app-result-list class="mx-auto"></app-result-list>
+          </div>
+          <div nz-col [nzSpan]="6" [nzPull]="18">
+            <app-song-queue></app-song-queue>
+          </div>
         </div>
       </div>
-    </div>
-  </nz-content>
+    </nz-content>
+  </nz-layout>
   <app-set-up-modal></app-set-up-modal>
   <nz-footer>
-  <app-cookie-settings></app-cookie-settings>
+    <app-cookie-settings></app-cookie-settings>
   </nz-footer>
 </nz-layout>
