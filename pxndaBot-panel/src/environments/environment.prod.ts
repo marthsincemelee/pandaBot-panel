@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  requestURL: 'http://smoothcloud.de:9000/'
+  requestURL: 'https://smoothcloud.de:9000/'
 };

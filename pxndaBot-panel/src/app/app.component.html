@@ -8,19 +8,15 @@
     </nz-drawer>
 
     <nz-content>
-      <div class="container-fluid">
+      <div class="container" *ngIf="!this.requestService.hasSearchedAlready">
         <app-search-bar></app-search-bar>
-        <div nz-row style="margin-top: 5vh">
-          <div nz-col [nzSpan]="18" [nzPush]="6">
-            <app-result-list class="mx-auto"></app-result-list>
-          </div>
-          <div nz-col [nzSpan]="6" [nzPull]="18">
-            <app-song-queue></app-song-queue>
-          </div>
-        </div>
+      </div>
+      <div class="container-fluid" *ngIf="this.requestService.hasSearchedAlready">
+
       </div>
     </nz-content>
   </nz-layout>
+
   <app-set-up-modal></app-set-up-modal>
   <nz-footer>
     <app-cookie-settings></app-cookie-settings>

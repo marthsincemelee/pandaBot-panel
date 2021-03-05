@@ -4,6 +4,7 @@ import {YoutubeSearchResult} from "../models/YoutubeSearchResult";
 import {newArray} from "@angular/compiler/src/util";
 import {SongQueueResonseObject} from "../models/SongQueueResonseObject";
 import {CookieService} from "ngx-cookie-service";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class RequestServiceService {
   searchResults: Array<any>;
   dataLoaded: boolean;
   isSetupDone: boolean;
+  hasSearchedAlready: boolean;
 
   guildID = '';
   userID = '';
@@ -21,6 +23,7 @@ export class RequestServiceService {
   currentQueue: Array<string>;
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
+    this.hasSearchedAlready = false;
 
     if(this.cookieService.get('botSetupDone') === 'true') {
       this.isSetupDone = true;
@@ -67,6 +70,7 @@ export class RequestServiceService {
     };
     console.log('requesting now');
     const response = await this.http.post(this.requestURL + 'addSong', data).toPromise();
+
     console.log('requested stopped');
 
     this.getQueueForGuild(this.guildID);
@@ -88,10 +92,11 @@ export class RequestServiceService {
     this.dataLoaded = false;
     this.searchResults = [];
     try {
-      const response = await this.http.get<any>('https://pxnda.smoothcloud.de/' + searchPhrase,
+      const response = await this.http.get<any>(environment.requestURL + 'youtube/' + searchPhrase,
         {observe: "response"}).toPromise();
 
       if (response.status === 200) {
+        this.hasSearchedAlready = true;
         response.body.items.forEach(video => {
           if (video.id.kind === "youtube#video") {
             this.searchResults.push(new YoutubeSearchResult(video.id.kind, video.id.videoId, video.snippet.title, video.snippet.thumbnails, video.snippet.description));

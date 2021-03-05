@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RequestServiceService} from "../services/request-service.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-search-bar',
@@ -7,9 +8,12 @@ import {RequestServiceService} from "../services/request-service.service";
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
+  searchForm: FormGroup;
 
-  constructor(public requestService: RequestServiceService) {
-    this.currentInput = '';
+  constructor(public requestService: RequestServiceService, private fb: FormBuilder) {
+    this.searchForm = this.fb.group({
+      searchField: [null, Validators.required]
+    });
   }
 
   currentInput: string;
@@ -19,8 +23,10 @@ export class SearchBarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('clicked');
-    this.requestService.requestSearch(this.currentInput);
+    console.log(this.searchForm.value.searchField);
+    if(this.searchForm.valid){
+      this.requestService.requestSearch(this.searchForm.value.searchField)
+    }
   }
 
 }
