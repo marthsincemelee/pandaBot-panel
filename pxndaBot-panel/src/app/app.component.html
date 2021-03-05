@@ -1,11 +1,12 @@
 <nz-layout>
   <nz-header></nz-header>
   <nz-layout>
-    <nz-drawer [nzClosable]="false" [nzVisible]="false" nzPlacement="right" nzTitle="Basic Drawer" (nzOnClose)="close()">
+    <nz-drawer [nzClosable]="false" [nzVisible]="false" nzPlacement="right" nzTitle="Basic Drawer">
       <ng-container>
         <app-song-queue></app-song-queue>
       </ng-container>
     </nz-drawer>
+
     <nz-content>
       <div class="container-fluid">
         <app-search-bar></app-search-bar>
