@@ -6,13 +6,10 @@
         <app-song-queue></app-song-queue>
       </ng-container>
     </nz-drawer>
-
     <nz-content>
-      <div class="container" *ngIf="!this.requestService.hasSearchedAlready">
+      <div class="container-fluid">
         <app-search-bar></app-search-bar>
-      </div>
-      <div class="container-fluid" *ngIf="this.requestService.hasSearchedAlready">
-
+        <app-result-list></app-result-list>
       </div>
     </nz-content>
   </nz-layout>
